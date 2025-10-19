@@ -38,6 +38,15 @@ app.post("/users", (req, res) => {
   res.status(201).json({ message: "added" });
 });
 
+// update
+app.put("/users/:id", (req, res) => {
+  const { name } = req.body;
+  const { id } = req.params;
+  conn.execute(`update users set name='${name}' where id=${id}`);
+
+  res.status(200).json({ message: "updated" });
+});
+
 app.listen(port, () => {
   console.log(`sever running on port ${port}`);
 });
