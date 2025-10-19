@@ -20,6 +20,14 @@ app.get("/users", (req, res) => {
   });
 });
 
+// fetch specific user
+app.get("/users/:id", (req, res) => {
+  const { id } = req.params;
+  conn.execute(`SELECT * FROM USERS where id=${id}`, (err, data) => {
+    res.status(200).json({ message: "success", user: data });
+  });
+});
+
 app.listen(port, () => {
   console.log(`sever running on port ${port}`);
 });
