@@ -13,6 +13,13 @@ const conn = mysql.createConnection({
   database: "trainingsql",
 });
 
+// fetch users
+app.get("/users", (req, res) => {
+  conn.execute(`SELECT * FROM USERS`, (err, data) => {
+    res.status(200).json({ message: "success", users: data });
+  });
+});
+
 app.listen(port, () => {
   console.log(`sever running on port ${port}`);
 });
