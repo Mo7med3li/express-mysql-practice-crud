@@ -47,6 +47,14 @@ app.put("/users/:id", (req, res) => {
   res.status(200).json({ message: "updated" });
 });
 
+// delete
+app.delete("/users/:id", (req, res) => {
+  const { id } = req.params;
+  conn.execute(`DELETE FROM users where id =${id}`);
+
+  res.status(200).json({ message: "deleted" });
+});
+
 app.listen(port, () => {
   console.log(`sever running on port ${port}`);
 });
