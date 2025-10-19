@@ -28,6 +28,16 @@ app.get("/users/:id", (req, res) => {
   });
 });
 
+// add user
+app.post("/users", (req, res) => {
+  const { name, email, password } = req.body;
+  conn.execute(
+    `INSERT INTO users (name,email,password) values ('${name}','${email}','${password}')`
+  );
+
+  res.status(201).json({ message: "added" });
+});
+
 app.listen(port, () => {
   console.log(`sever running on port ${port}`);
 });
